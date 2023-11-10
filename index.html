@@ -1,0 +1,16 @@
+<html>
+  <head></head>
+  <body>
+<h1>LDAP JWT SSO</h1>
+
+<h4>This is a simple Mod-perl based SSO solution that uses JSON web tokens. Authenticatoin is against an LDAP server or Active Directory server.</h4>
+
+<p> Here are the relevent links to use
+  <ul>
+    <li><a href="/sso?a=login">Login to get a JWT cookie</a>
+    <li><a href="/sso?a=login&target=http://www.yahoo.com">Redirect to a target URL only if valid JWT token (login if no token, then redirect with new token)</a>
+    <li><a href="/sso?a=validate">Validate a JWT cookie</a>
+  </ul>
+</p>
+</body>
+  

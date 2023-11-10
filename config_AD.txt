@@ -1,0 +1,29 @@
+###Params to go against ActiveDirectory (AD) server; AD generally doesn't allow anonymous bind
+#This is passed to Net::LDAP->new, so encode ldap/ldaps and port info in it if necessary
+LDAP_HOST=ldap://ads.mycompany.com
+LDAP_BASE=dc=one,dc=ads,dc=mycompany,dc=com
+#"True" or "False"; if "True" will anonymous bind to get DN for user with username/id of $USER
+ANONYMOUS_BIND_FLAG=False
+#"True" or "False"; if "True" will call start_tls and pass values for following 2 params if specified
+START_TLS_FLAG=True
+#Value for "verify" param of start_tls, "none", "optional", or "require"
+START_TLS_VERIFY=require
+#Version of SSL/TLS to use, "sslv1", "sslv3", "tlsv1", "tlsv1_1_, or "tlsv1_2"
+START_TLS_VERSION=tlsv1_2
+#cafile param to start_tls if not undefined or empty
+CAFILE=/etc/ssl/certs/adauthfile.pem
+#capath param to start_tls if not undefined or empty
+CAPATH=
+#filter regex used for doing ldap search for user entry (note this has interpolated variables --- they will be interpolated later, so keep this sinqle quoted).
+FILTER=(sAMAccountName=$uid)
+#regex used to construct user DN when no anonymous bind (note this has interpolated variables --- they will be interpolated later, so keep this sinqle quoted).
+USER_DN=ONE\\$uid
+#extra messages/info will be printed if "True"
+DEBUG=False
+SESSION_COOKIE_NAME=SSO_SESSION
+SESSION_COOKIE_DOMAIN=.mycompany.com
+SESSION_COOKIE_PATH=/
+JWT_ALG=HS512
+JWT_SECRET=secretJWTkey
+#28800 = 8 * 60 * 60, i.e. 8 hours, tokens expire after 8 hours
+JWT_TTL=28800
